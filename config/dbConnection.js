@@ -5,25 +5,34 @@ const dbName = "got";
 var connMongoDB = function (dados) {
     mongo.connect(url, function (err, client) {
         assert.equal(null, err);
-        console.log("Connected successfully to server");
+        console.log("Servidor Conectado com sucesso!");
         const db = client.db(dbName);
         query(db, dados);
         client.close();
     });
 };
+
 function query(db, dados) {
     var collection = db.collection(dados.collection);
     switch (dados.operacao) {
-        case "inserir":
-            collection.insertOne(dados.usuario, dados.callback);
-            break;
-        case "procurar":
+        case "inserirUsuario":
+        collection.insertOne(dados.usuario, dados.callback);
+        break;
+        case "procurarUsuario":
             collection.find(dados.usuario, dados.callback);
-            break;
+            break; 
+        case "inserirJogo":
+            collection.insertOne(dados.hablidades, dados.callback);
+        break;
+        case "IniciaJogo":
+            collection.find(dados.hablidades, dados.callback);
+        break;    
         default:
             break;
     }
 }
+
+
 module.exports = function () {
     return connMongoDB;
 };
