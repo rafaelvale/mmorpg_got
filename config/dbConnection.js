@@ -18,15 +18,21 @@ function query(db, dados) {
         case "inserirUsuario":
         collection.insertOne(dados.usuario, dados.callback);
         break;
+        case "inserirJogo":
+            collection.insertOne(dados.habilidades, dados.callback);
+        break;
         case "procurarUsuario":
+        collection.find(dados.usuario, dados.callback);
+        break;    
+        case "IniciaJogo":
             collection.find(dados.usuario, dados.callback);
             break; 
-        case "inserirJogo":
-            collection.insertOne(dados.hablidades, dados.callback);
-        break;
-        case "IniciaJogo":
-            collection.find(dados.hablidades, dados.callback);
-        break;    
+        case "inserirAcao":
+            collection.insertOne(dados.acao, dados.callback);
+            break;
+        case "verificaAcoes":
+            collection.find(dados.usuario, dados.callback);
+            break;
         default:
             break;
     }

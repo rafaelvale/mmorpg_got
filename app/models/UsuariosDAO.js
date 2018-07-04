@@ -14,6 +14,7 @@ UsuariosDAO.prototype.inserirUsuario = function (usuario) {
 };
 
 UsuariosDAO.prototype.autenticar = function (usuario,req, res) {
+    
     var dados = {
         operacao: "procurarUsuario",
         usuario: usuario,
