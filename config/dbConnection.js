@@ -22,7 +22,7 @@ function query(db, dados) {
             collection.insertOne(dados.habilidades, dados.callback);
         break;
         case "procurarUsuario":
-        collection.find(dados.usuario, dados.callback);
+            collection.find(dados.usuario, dados.callback);
         break;    
         case "IniciaJogo":
             collection.find(dados.usuario, dados.callback);
@@ -32,7 +32,19 @@ function query(db, dados) {
             break;
         case "verificaAcoes":
             collection.find(dados.usuario, dados.callback);
+            
             break;
+        case "updateAcao":
+            collection.update(dados.queryDb, dados.updateContent, dados.callback);
+           
+            
+            break;
+            case "RemoveAcao":
+            collection.remove(dados._id, dados.callback);
+           
+            
+            break;
+            
         default:
             break;
     }
