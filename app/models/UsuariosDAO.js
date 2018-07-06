@@ -1,7 +1,16 @@
+/*IMPORTAR O MODULO DO CRYPTO */
+var crypto = require('crypto');
+
 function UsuariosDAO(connection) {
     this._connection = connection;
 }
 UsuariosDAO.prototype.inserirUsuario = function (usuario) {
+
+    var senha_criptografada = crypto.createHash('md5').update(usuario.senha).digest('hex');
+
+    usuario.senha = senha_criptografada;
+
+
     var dados = {
         operacao: "inserirUsuario",
         usuario: usuario,
@@ -14,6 +23,9 @@ UsuariosDAO.prototype.inserirUsuario = function (usuario) {
 };
 
 UsuariosDAO.prototype.autenticar = function (usuario,req, res) {
+    var senha_criptografada = crypto.createHash('md5').update(usuario.senha).digest('hex');
+
+    usuario.senha = senha_criptografada;
     
     var dados = {
         operacao: "procurarUsuario",
